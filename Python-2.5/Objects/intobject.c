@@ -426,7 +426,12 @@ static int
 int_print(PyIntObject *v, FILE *fp, int flags)
      /* flags -- not used but required by interface */
 {
-	fprintf(fp, "%ld", v->ob_ival);
+	//add by fsp 20130721_00_51 for first source modify
+    PyObject* str = PyString_FromString("I am in int_print function");
+    PyObject_Print(str, stdout, 0);
+    printf("\n");
+    //add end
+    fprintf(fp, "%ld", v->ob_ival);
 	return 0;
 }
 
