@@ -785,9 +785,42 @@ PyString_AsStringAndSize(register PyObject *obj,
 #include "stringlib/partition.h"
 
 
+static void
+ShowCharacter()
+{
+    char chA = 'a';
+    PyStringObject** posA = characters+(unsigned short)chA;
+    int i;
+    char values[5];
+    int refcnts[5];
+    
+    for (i = 0; i < 5; ++i)
+    {
+        PyStringObject* strObj = posA[i];
+        values[i] = strObj->ob_sval[0];
+        refcnts[i] = strObj->ob_refcnt;
+    }
+
+    printf(" value : ");
+    for (i = 0; i < 5; ++i)
+    {
+        printf("%c\t", values[i]);
+    }
+    printf("\nrefcnt : ");
+    for (i = 0; i < 5; ++i)
+    {
+        printf("%d\t", refcnts[i]);
+    }
+    printf("\n");
+}
+
+
 static int
 string_print(PyStringObject *op, FILE *fp, int flags)
 {
+    //add by fsp 20130801_00_31 for trigger ShowCharacter()
+    //ShowCharacter();
+    //add end
 	Py_ssize_t i;
 	char c;
 	int quote;
@@ -929,6 +962,11 @@ string_length(PyStringObject *a)
 static PyObject *
 string_concat(register PyStringObject *a, register PyObject *bb)
 {
+    //add by fsp 20130901_00_12 for string join + test
+    //PyObject* str = PyString_FromString("call string_concat");
+    //PyObject_Print(str, stdout, 0);
+    //printf("\n");
+    //add end
 	register Py_ssize_t size;
 	register PyStringObject *op;
 	if (!PyString_Check(bb)) {
@@ -1721,6 +1759,11 @@ sequence.  The separator between elements is S.");
 static PyObject *
 string_join(PyStringObject *self, PyObject *orig)
 {
+    //add by fsp 20130901_00_14 for string join + test
+    //PyObject* str = PyString_FromString("call string_join");
+    //PyObject_Print(str, stdout, 0);
+    //printf("\n");
+    //add end
 	char *sep = PyString_AS_STRING(self);
 	const Py_ssize_t seplen = PyString_GET_SIZE(self);
 	PyObject *res = NULL;
