@@ -75,10 +75,10 @@ PY_CFLAGS=	$(CFLAGS) $(CPPFLAGS) $(CFLAGSFORSHARED) -DPy_BUILD_CORE
 
 
 # Machine-dependent subdirectories
-MACHDEP=	linux3
+MACHDEP=	linux2
 
 # Install prefix for architecture-independent files
-prefix=		/home/fsp/Codes/Git/PyObject/Python-compiled
+prefix=		/home/fsp/Github/PyObject/Python-compiled
 
 # Install prefix for architecture-dependent files
 exec_prefix=	${prefix}
@@ -133,7 +133,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	'--prefix=/home/fsp/Codes/Git/PyObject/Python-compiled' 'enable-shared' 'build_alias=enable-shared' 'host_alias=enable-shared' 'target_alias=enable-shared'
+CONFIG_ARGS=	'--prefix=/home/fsp/Github/PyObject/Python-compiled'
 
 
 # Subdirectories with code
